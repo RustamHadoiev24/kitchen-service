@@ -1,0 +1,24 @@
+{% extends "kitchen/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-secondary fw-bold">Dish Types (Categories)</h2>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        {% if dish_type_list %}
+            <ul class="list-group list-group-flush rounded-3">
+                {% for dish_type in dish_type_list %}
+                    <li class="list-group-item p-3 d-flex justify-content-between align-items-center">
+                        <span class="fs-5 fw-semibold text-dark">{{ dish_type.name }}</span>
+                        <span class="badge bg-secondary rounded-pill">ID: {{ dish_type.id }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="p-4 mb-0 text-muted">No categories found. Please add them via Admin Panel.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

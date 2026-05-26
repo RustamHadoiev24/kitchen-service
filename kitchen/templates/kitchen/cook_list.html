@@ -1,0 +1,55 @@
+{% extends "kitchen/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-secondary fw-bold">Our Cooking Team</h2>
+</div>
+
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <form method="GET" action="" class="row g-2">
+            <div class="col-sm-9">
+                {{ search_form }}
+            </div>
+            <div class="col-sm-3 d-grid">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search me-2"></i>Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="ps-4">Username</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Experience</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if cook_list %}
+                    {% for cook in cook_list %}
+                        <tr>
+                            <td class="fw-bold text-dark ps-4">{{ cook.username }}</td>
+                            <td>{{ cook.first_name }} {{ cook.last_name }}</td>
+                            <td>
+                                <span class="badge bg-info text-dark px-3 py-2 fs-6">
+                                    {{ cook.years_of_experience|default:"0" }} years
+                                </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center p-4 text-muted">No cooks found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

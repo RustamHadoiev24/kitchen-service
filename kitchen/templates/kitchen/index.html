@@ -1,0 +1,43 @@
+{% extends "kitchen/base.html" %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold text-dark">Welcome to Kitchen Service!</h1>
+        <p class="col-md-8 fs-4 text-muted">Manage cooking processes, track chefs responsibilities, and organize restaurant recipes.</p>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm bg-primary text-white h-100">
+            <div class="card-body py-4">
+                <i class="fas fa-users fa-3x mb-3"></i>
+                <h3 class="card-title h5">Our Chefs</h3>
+                <p class="display-4 fw-bold">{{ num_cooks }}</p>
+                <a href="{% url 'kitchen:cook-list' %}" class="btn btn-light btn-sm mt-2">View All Cooks</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm bg-success text-white h-100">
+            <div class="card-body py-4">
+                <i class="fas fa-hamburger fa-3x mb-3"></i>
+                <h3 class="card-title h5">Active Dishes</h3>
+                <p class="display-4 fw-bold">{{ num_dishes }}</p>
+                <a href="{% url 'kitchen:dish-list' %}" class="btn btn-light btn-sm mt-2">View Menu</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm bg-warning text-dark h-100">
+            <div class="card-body py-4">
+                <i class="fas fa-list fa-3x mb-3"></i>
+                <h3 class="card-title h5">Dish Types</h3>
+                <p class="display-4 fw-bold">{{ num_dish_types }}</p>
+                <a href="{% url 'kitchen:dish-type-list' %}" class="btn btn-dark btn-sm mt-2">View Categories</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
