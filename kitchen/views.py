@@ -76,3 +76,4 @@ def toggle_assign_to_dish(request, pk):
     else:
         dish.cooks.add(request.user)
     return HttpResponseRedirect(reverse("kitchen:dish-detail", args=[pk]))
+# Ready for code review
