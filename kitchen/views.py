@@ -1,42 +1,38 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from .models import Cook, Dish, DishType
 
 
-def index(request):
-    num_cooks = Cook.objects.count()
-    num_dishes = Dish.objects.count()
-    num_dish_types = DishType.objects.count()
+class IndexView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "kitchen/index.html"
 
-    context = {
-        "num_cooks": num_cooks,
-        "num_dishes": num_dishes,
-        "num_dish_types": num_dish_types,
-    }
-
-    return render(request, "kitchen/index.html", context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["num_cooks"] = Cook.objects.count()
+        context["num_dishes"] = Dish.objects.count()
+        context["num_dish_types"] = DishType.objects.count()
+        return context
 
 
-class DishTypeListView(generic.ListView):
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
     template_name = "kitchen/dish_type_list.html"
     paginate_by = 5
 
 
-class DishListView(generic.ListView):
+class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     context_object_name = "dish_list"
     template_name = "kitchen/dish_list.html"
     paginate_by = 5
 
 
-class CookListView(generic.ListView):
+class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     context_object_name = "cook_list"
     template_name = "kitchen/cook_list.html"
@@ -63,17 +59,16 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("kitchen:dish-list")
 
 
-class DishDetailView(generic.DetailView):
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     template_name = "kitchen/dish_detail.html"
 
 
-@login_required
-def toggle_assign_to_dish(request, pk):
-    dish = get_object_or_404(Dish, pk=pk)
-    if request.user in dish.cooks.all():
-        dish.cooks.remove(request.user)
-    else:
-        dish.cooks.add(request.user)
-    return HttpResponseRedirect(reverse("kitchen:dish-detail", args=[pk]))
-# Ready for code review
+class ToggleAssignToDishView(LoginRequiredMixin, generic.View):
+    def post(self, request, pk):
+        dish = get_object_or_404(Dish, pk=pk)
+        if request.user in dish.cooks.all():
+            dish.cooks.remove(request.user)
+        else:
+            dish.cooks.add(request.user)
+        return HttpResponseRedirect(reverse("kitchen:dish-detail", args=[pk]))
