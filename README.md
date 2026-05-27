@@ -1,23 +1,23 @@
 # Kitchen Service 
 
-Мій проєкт на Django для управління ресторанною кухнею. Тут можна менеджеріть типи страв, додавати самі страви (рецепти, інгредієнти, ціни) та вести облік кухарів.
+My Django project for managing a restaurant kitchen. Here, you can manage dish categories, add dishes (recipes, ingredients, prices), and keep track of chefs.
 
-Головна фішка — кухарі можуть "закріплювати" себе за конкретними стравами (реалізовано через зв'язок Many-to-Many).
-
----
-
-## Що вміє додаток:
-
-- **Захист сторінок:** Аноніми нічого не побачать, усе закрито через `LoginRequiredMixin` (тільки після логіну).
-- **Головна сторінка:** Статистика всього, що є в базі (скільки кухарів, страв та категорій).
-- **Керування стравами:** Повний CRUD.
-- **Список кухарів:** База даних персоналу кухні.
-- **Кнопка Assign/Unassign:** Інтерактивна штука на сторінці страви. Зайшов під своїм акаунтом, натиснув кнопку — і ти вже в списку кухарів цієї страви. 
-- **Пагінація:** Списки розбиті по 5 елементів на сторінку.
+The main feature is that chefs can “assign” themselves to specific dishes (implemented via a Many-to-Many relationship).
 
 ---
 
-## Стек технологій:
+## What the app can do:
+
+- **Page protection:** Anonymous users see nothing; everything is restricted via `LoginRequiredMixin` (accessible only after logging in).
+- **Home page:** Statistics on everything in the database (number of chefs, dishes, and categories).
+- **Dish management:** Full CRUD.
+- **List of chefs:** Database of kitchen staff.
+- **Assign/Unassign button:** An interactive feature on the dish page. Log in to your account, click the button—and you’re already on the list of chefs for that dish. 
+- **Pagination:** Lists are paginated with 5 items per page.
+
+---
+
+## Tech stack:
 - Python 3
 - Django
 - Bootstrap 5
@@ -25,17 +25,19 @@
 
 ---
 
-## Як запустити проєкт локально:
+## How to run the project locally:
 
-1. Клонуємо репозиторій:
+1. Clone the repository:
 git clone [https://github.com/RustamHadoiev24/kitchen-service.git](https://github.com/RustamHadoiev24/kitchen-service.git)
 cd kitchen-service
-2. Піднімаємо віртуальне оточення:
+2. Set up a virtual environment:
 python -m venv venv
 venv\Scripts\activate
-3. Встановлюємо залежності:
+3. Install dependencies:
 pip install -r requirements.txt
-4. Робимо міграції бази даних:
+4. Run database migrations:
 python manage.py migrate
-5. Запускаємо локальний сервер:
+5. Start the local server:
 python manage.py runserver
+
+Translated with DeepL.com (free version)
