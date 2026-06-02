@@ -40,4 +40,5 @@ python manage.py migrate
 5. Start the local server:
 python manage.py runserver
 
-Translated with DeepL.com (free version)
+Link to the website:
+https://kitchen-service-rustam.onrender.com
