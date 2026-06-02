@@ -1,18 +1,19 @@
 [
   {
-    "model": "auth.user",
+    "model": "kitchen.cook",
     "pk": 999,
     "fields": {
       "password": "pbkdf2_sha256$320000$lY8u4mJm1N2B$D1wJqRXZGhz7z8b6J9pWqXz5v8b6n1m2k3l4j5h6g7f=",
       "last_login": null,
       "is_superuser": false,
       "username": "user",
-      "first_name": "",
-      "last_name": "",
-      "email": "",
+      "first_name": "Test",
+      "last_name": "User",
+      "email": "testuser@example.com",
       "is_staff": false,
       "is_active": true,
       "date_joined": "2026-06-02T12:00:00Z",
+      "years_of_experience": 1,
       "groups": [],
       "user_permissions": []
     }
