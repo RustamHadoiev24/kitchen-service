@@ -42,3 +42,9 @@ python manage.py runserver
 
 Link to the website:
 https://kitchen-service-rustam.onrender.com
+
+To explore the application's features without creating a new account, feel free to use these standard test credentials:
+- Login: "user"
+- Password: "user12345"
+
+Note: This user has standard access permissions, allowing you to browse menus, see lists of cooks, and view the main flow of the service safely.
