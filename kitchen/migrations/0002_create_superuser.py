@@ -6,14 +6,18 @@ def create_superuser_cook(apps, schema_editor):
     Cook = get_user_model()
 
     if not Cook.objects.filter(username="user").exists():
-        Cook.objects.create_superuser(
+        user = Cook.objects.create(
             username="user",
             email="admin@kitchen.com",
-            password="user12345",
+            is_superuser=True,
+            is_staff=True,
+            is_active=True,
             first_name="Test",
             last_name="User",
-            years_of_experience=5  # Додаємо обов'язкове поле твоєї моделі Cook
+            years_of_experience=5
         )
+        user.set_password("user12345")
+        user.save()
 
 
 class Migration(migrations.Migration):
